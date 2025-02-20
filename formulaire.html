@@ -1,88 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <form name="f">
+        <fieldset style="background: #ffffdd;">
+            <legend id="titre" style="background: #ffff88;"><b>Client</b></legend>
+            <center>
+                <table border="0" cellspacing="0" cellpadding="5" width="100%">
+                    <tr>
+                        <td width="17%"><b>Civilité</b></td>
+                        <td width="45%">
+                            <input type="radio" name="civilite" value="mademoiselle"> Mademoiselle
+                            <input type="radio" name="civilite" value="madame" checked> Madame
+                            <input type="radio" name="civilite" value="monsieur"> Monsieur
+                        </td>
+                        <td id="t1" width="38%">
+                            <input type="text" name="display" size="15" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Nom / Prénom</b></td>
+                        <td>
+                            <input id="c1" type="text" name="nom" size="50" maxlength="80" onchange="verifiernom()">
+                        </td>
+                        <td id="t2"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Adresse</b></td>
+                        <td>
+                            <textarea id="c2" name="adresse" cols="50" rows="2" wrap="physical" onchange="verifieradresse()"></textarea>
+                        </td>
+                        <td id="t3"></td>
+                    </tr>
+                    <tr>
+                        <td><b>No postal / Localité</b></td>
+                        <td>
+                            <input id="c3" type="text" name="no_postal" size="5" maxlength="4" onchange="verifierpostal()">
+                            <input id="c4" type="text" name="localite" size="20" maxlength="80" value="">
+                        </td>
+                        <td id="t4"></td>
+                    </tr>
 
-    <FORM name="F">
+                    <!-- session pays -->
+                    <tr>
+                        <td><b>Pays</b></td>
+                        <td>
+                            <select id="lepays" name="pays">
+                                <option>Tunisie</option>
+                                <option>Algérie</option>
+                                <option selected>Maroc</option>
+                            </select>
+                            <b> Ajouter pays</b>
+                            <input id="c5" type="text" name="monpays" size="20" maxlength="80" value="Libye">
+                            <button type="button" onclick="AjouterPays()">Ajouter pays</button>
+                        </td>
+                        <td></td>
+                    </tr>
 
-        <FIELDSET STYLE="background: #FFFFDD ;">
-          <LEGEND id="titre" STYLE="background: #FFFF88 ;"><B>Client</B></LEGEND>
-      
-          <CENTER>
-            <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="5" WIDTH="100%">
-      
-              <TR>
-                <TD WIDTH="17%"><B>Civilité</B>
-                <TD WIDTH="45%">
-                  <INPUT TYPE=RADIO NAME=civilite VALUE="Mademoiselle">Mademoiselle
-                  <INPUT TYPE=RADIO NAME=civilite VALUE="Madame" CHECKED>Madame
-                  <INPUT TYPE=RADIO NAME=civilite VALUE="Monsieur">Monsieur
-                <TD id="T1" WIDTH="38%">
-                  <INPUT TYPE="text" NAME="display" SIZE=15 VALUE="">
-                </TD>
-              <TR>
-                <TD><B>Nom / Prénom</B>
-                <TD> <INPUT id="C1" TYPE=TEXT NAME=nom SIZE=50 MAXLENGTH=80 onChange="verifiernom()">
-                <TD id="T2"></TD>
-              <TR>
-                <TD><B>Adresse</B>
-                <TD> <TEXTAREA id="C2" NAME=adresse COLS=50 ROWS=2 WRAP=PHYSICAL onChange="verifieradresse()"></TEXTAREA>
-                <TD id="T3"></TD>
-      
-              <TR>
-                <TD><B>No postal / Localité</B>
-                <TD> <INPUT id="C3" TYPE=TEXT NAME=no_postal Size=5 MAXLENGTH=4 onChange="verifierpostal()">
-                  <INPUT id="C4" TYPE=TEXT NAME=localite SIZE=20 MAXLENGTH=80 VALUE="">
-                <TD id="T4"></TD>
-              <TR>
-                <TD><B>Pays</B>
-                <TD> <SELECT id="lepays" NAME=pays>
-                    <OPTION>Tunisie
-                    <OPTION>Algérie
-                    <OPTION SELECTED>Maroc
-                  </SELECT>
-                  <B> Ajouter pays</B>
-                  <INPUT id="C5" TYPE=TEXT NAME=monpays SIZE=20 MAXLENGTH=80 VALUE="Libye">
-                  <button type="button" onClick="myFunction()">Ajouter pays</button>
-                <TD></TD>
-      
-              <TR>
-                <TD><B>Plateforme(s)</B>
-                <TD> <INPUT TYPE=CHECKBOX NAME=materiel VALUE="Windows" CHECKED>Windows
-                  <INPUT TYPE=CHECKBOX NAME=materiel VALUE="Mac" CHECKED>Macintosh
-                  <INPUT TYPE=CHECKBOX NAME=materiel VALUE="Unix">Unix
-                <TD></TD>
-              <TR>
-                <TD><B>Applications(s)</B>
-                <TD> <SELECT NAME=applications SIZE=5 MULTIPLE>
-                    <OPTION SELECTED>Bureautique
-                    <OPTION>DAO
-                    <OPTION>Statistiques
-                    <OPTION>SGBD
-                    <OPTION SELECTED>Internet
-                  </SELECT>
-                <TD></TD>
-            </TABLE>
-          </CENTER>
-      
-        </FIELDSET>
-      
-        <CENTER>
-          <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="10" WIDTH="95%">
-            <TR>
-              <TH>
-                <INPUT TYPE=button VALUE="  Soumettre formulaire  " onclick=afficher()>
-                <INPUT TYPE=button VALUE="  Vérification formulaire " onclick=forme()>
-                <INPUT TYPE=RESET VALUE=" Effacer ">
-          </TABLE>
-        </CENTER>
-      
-      </FORM>
+                    <tr>
+                        <td><b>Plateforme(s)</b></td>
+                        <td>
+                            <input type="checkbox" name="materiel" value="windows" checked> Windows
+                            <input type="checkbox" name="materiel" value="mac" checked> Macintosh
+                            <input type="checkbox" name="materiel" value="unix"> Unix
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><b>Application(s)</b></td>
+                        <td>
+                            <select name="applications" size="5" multiple>
+                                <option selected>Bureautique</option>
+                                <option>DAO</option>
+                                <option>Statistiques</option>
+                                <option>SGBD</option>
+                                <option selected>Internet</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </center>
+        </fieldset>
+        <center>
+            <table border="0" cellspacing="0" cellpadding="10" width="95%">
+                <tr>
+                    <th>
+                        <input type="button" value="Soumettre formulaire" onclick="afficher()">
+                        <input type="button" value="Vérification formulaire" onclick="VerifierFormulaire()">
+                        <input type="reset" value="Effacer">
+                    </th>
+                </tr>
+            </table>
+        </center>
+    </form>
+ 
+ 
 </body>
 </html>
